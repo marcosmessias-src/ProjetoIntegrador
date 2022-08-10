@@ -14,17 +14,9 @@ class AlunoController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $alunos = Aluno::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('alunos', compact('alunos'));
     }
 
     /**
@@ -35,29 +27,13 @@ class AlunoController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $data = $request->all();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Aluno  $aluno
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Aluno $aluno)
-    {
-        //
-    }
+        if(Aluno::create($data)){
+            return redirect('alunos')->with('success', 'Aluno cadastrado com sucesso!');
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Aluno  $aluno
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Aluno $aluno)
-    {
-        //
+        return redirect('alunos')->with('error', 'Ocorreu um erro!');
     }
 
     /**
@@ -69,7 +45,12 @@ class AlunoController extends Controller
      */
     public function update(Request $request, Aluno $aluno)
     {
-        //
+        if($aluno->update($request->all())){
+            return redirect('alunos')->with('success', 'Aluno editado com sucesso!');
+        }
+
+        return redirect('alunos')->with('error', 'Ocorreu um erro!');
+
     }
 
     /**
@@ -80,6 +61,22 @@ class AlunoController extends Controller
      */
     public function destroy(Aluno $aluno)
     {
-        //
+        if($aluno->delete()){
+            return redirect('alunos')->with('success', 'Aluno deletado com sucesso!');
+        }
+
+        return redirect('alunos')->with('error', 'Ocorreu um erro!');
+    }
+
+    public function all()
+    {
+        $alunos = Aluno::all();
+
+        return json_encode($alunos);
+    }
+
+    public function find($id)
+    {
+        return json_encode(Aluno::find($id)->name);
     }
 }
