@@ -45,8 +45,8 @@ return [
 
         'mongodb' => [
             'driver' => 'mongodb',
-            'dsn' => env('DB_URI', 'mongodb+srv://username:password@<atlas-cluster-uri>/myappdb?retryWrites=true&w=majority'),
-            'database' => 'myappdb',
+            'dsn' => env('DB_URI', 'mongodb+srv://admin:db7GsTHW3Hluxvho@assistenciasocial.nmym4to.mongodb.net/?retryWrites=true&w=majority'),
+            'database' => 'assistenciasocial',
         ],
 
         'mysql' => [
