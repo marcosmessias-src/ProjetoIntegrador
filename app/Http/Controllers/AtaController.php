@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ata;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AtaController extends Controller
@@ -14,17 +15,10 @@ class AtaController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $hoje = now()->format('d/m/Y');
+        $atas = Ata::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('ata', compact('hoje', 'atas'));
     }
 
     /**
@@ -35,29 +29,11 @@ class AtaController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        if(Ata::create($request->all())){
+            return redirect('ata')->with('success', 'Registro de ATA adicionado!');
+        }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Ata  $ata
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Ata $ata)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Ata  $ata
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Ata $ata)
-    {
-        //
+        return redirect('ata')->with('error', 'Ocorreu um erro!');
     }
 
     /**
@@ -67,9 +43,14 @@ class AtaController extends Controller
      * @param  \App\Models\Ata  $ata
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ata $ata)
+    public function update(Request $request, $id)
     {
-        //
+        $ata = Ata::find($id);
+        if($ata->update($request->all())){
+            return redirect('ata')->with('success', 'Registro de ata atualizado com sucesso!');
+        }
+
+        return redirect('ata')->with('error', 'Ocorreu um erro!');
     }
 
     /**
@@ -78,8 +59,29 @@ class AtaController extends Controller
      * @param  \App\Models\Ata  $ata
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ata $ata)
+    public function destroy($id)
     {
-        //
+        $ata = Ata::find($id);
+        if($ata->delete()){
+            return redirect('ata')->with('success', 'Ata deletada com sucesso!');
+        }
+
+        return redirect('ata')->with('error', 'Ocorreu um erro!');
+    }
+
+    public function indexSemanal()
+    {
+        $hoje = now()->subDays(7)->format('d/m/Y').' - '.now()->format('d/m/Y');
+        $atas = Ata::whereBetween('created_at', [Carbon::now()->subDays(7)->startOfDay(), Carbon::now()])->get();
+
+        return view('ata', compact('hoje', 'atas'));
+    }
+
+    public function indexMensal()
+    {
+        $hoje = now()->subDays(30)->format('d/m/Y').' - '.now()->format('d/m/Y');
+        $atas = Ata::whereBetween('created_at', [Carbon::now()->subDays(30)->startOfDay(), Carbon::now()])->get();
+
+        return view('ata', compact('hoje', 'atas'));
     }
 }
