@@ -1,9 +1,9 @@
 <!--begin::Aside-->
-<div id="kt_aside" class="aside bg-primary" data-kt-drawer="true" data-kt-drawer-name="aside" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="auto" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_toggle">
+<div id="kt_aside" class="aside bg-opacity-15 bg-success" data-kt-drawer="true" data-kt-drawer-name="aside" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="auto" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_toggle">
     <!--begin::Logo-->
     <div class="aside-logo d-none d-lg-flex flex-column align-items-center flex-column-auto py-8" id="kt_aside_logo">
-        <a href="/metronic8/demo4/../demo4/index.html">
-            <img alt="Logo" src="assets/media/logos/demo4.svg" class="h-55px" />
+        <a href="{{route('dashboard')}}">
+            <img alt="Logo" src="assets/media/logos/logo2.png" class="h-60px" />
         </a>
     </div>
     <!--end::Logo-->
@@ -14,7 +14,7 @@
             <!--begin::Menu-->
             <div id="kt_aside_menu" class="menu menu-column menu-title-gray-600 menu-state-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500 fw-semibold fs-6" data-kt-menu="true">
                 <!--begin:Menu item-->
-                <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item py-2">
+                <a href="{{route('dashboard')}}" data-kt-menu-placement="right-start" class="menu-item py-2">
                     <!--begin:Menu link-->
                     <span class="menu-link menu-center">
                         <span class="menu-icon me-0" data-kt-menu-overflow="true" data-kt-menu-placement="top-start" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-dismiss="click" title="Dashboard">
@@ -29,10 +29,10 @@
                         </span>
                     </span>
                     <!--end:Menu link-->
-                </div>
+                </a>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
-                <a href="{{route('ata')}}" data-kt-menu-placement="right-start" class="menu-item py-2" >
+                <a href="{{route('ata.index')}}" data-kt-menu-placement="right-start" class="menu-item py-2" >
                     <!--begin:Menu link-->
                     <span class="menu-link menu-center" >
                         <span class="menu-icon me-0" data-kt-menu-overflow="true" data-kt-menu-placement="top-start" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-dismiss="click" title="Ata">
@@ -50,7 +50,7 @@
                 </a>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
-                <a href="{{route('prontuario')}}" data-kt-menu-placement="right-start" class="menu-item py-2" >
+                <a href="{{route('prontuario.index')}}" data-kt-menu-placement="right-start" class="menu-item py-2" >
                     <!--begin:Menu link-->
                     <span class="menu-link menu-center" >
                         <span class="menu-icon me-0" data-kt-menu-overflow="true" data-kt-menu-placement="top-start" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-dismiss="click" title="Prontuários">
@@ -70,7 +70,7 @@
                 </a>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
-                <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item py-2" >
+                <a href="{{route('alunos.index')}}" data-kt-menu-placement="right-start" class="menu-item py-2" >
                     <!--begin:Menu link-->
                     <span class="menu-link menu-center" >
                         <span class="menu-icon me-0" data-kt-menu-overflow="true" data-kt-menu-placement="top-start" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-dismiss="click" title="Alunos">
@@ -86,7 +86,7 @@
                         </span>
                     </span>
                     <!--end:Menu link-->
-                </div>
+                </a>
                 <!--end:Menu item-->
             </div>
             <!--end::Menu-->
@@ -96,9 +96,29 @@
     <!--end::Nav-->
     <!--begin::Footer-->
     <div class="aside-footer d-flex flex-column align-items-center flex-column-auto" id="kt_aside_footer">
-        <!--begin::Menu-->
-        <div class="mb-7">
-            <button type="button" class="btn btm-sm btn-custom btn-icon" data-kt-menu-trigger="click" data-kt-menu-overflow="true" data-kt-menu-placement="top-start" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-dismiss="click" title="Sair">
+        @if (Auth::user()->is_admin)
+            <!--begin::Menu-->
+            <div class="mb-7">
+                <a href="{{route('usuarios.index')}}" class="btn btm-sm btn-custom btn-icon" data-kt-menu-overflow="true" data-kt-menu-placement="top-start" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-dismiss="click" title="Usuários">
+                <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr063.svg-->
+                    <span class="svg-icon svg-icon-muted svg-icon-2hx">
+                        <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/communication/com006.svg-->
+                        <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.3" d="M16.5 9C16.5 13.125 13.125 16.5 9 16.5C4.875 16.5 1.5 13.125 1.5 9C1.5 4.875 4.875 1.5 9 1.5C13.125 1.5 16.5 4.875 16.5 9Z" fill="currentColor"/>
+                        <path d="M9 16.5C10.95 16.5 12.75 15.75 14.025 14.55C13.425 12.675 11.4 11.25 9 11.25C6.6 11.25 4.57499 12.675 3.97499 14.55C5.24999 15.75 7.05 16.5 9 16.5Z" fill="currentColor"/>
+                        <rect x="7" y="6" width="4" height="4" rx="2" fill="currentColor"/>
+                        </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </span>
+                    <!--end::Svg Icon-->
+                </a>
+            </div>
+        @endif
+
+        <form action="{{route('logout')}}" method="POST" class="mb-7">
+            @csrf
+            <button type="submit" class="btn btm-sm btn-custom btn-icon" data-kt-menu-overflow="true" data-kt-menu-placement="top-start" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-dismiss="click" title="Sair">
                <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr063.svg-->
                 <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect opacity="0.5" x="6" y="11" width="13" height="2" rx="1" fill="currentColor"/>
@@ -107,7 +127,7 @@
                 </span>
                 <!--end::Svg Icon-->
             </button>
-        </div>
+        </form>
         <!--end::Menu-->
     </div>
     <!--end::Footer-->
