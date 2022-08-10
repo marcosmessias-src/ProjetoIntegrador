@@ -14,17 +14,10 @@ class ProntuarioController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $prontuarios = Prontuario::latest()
+        ->get();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('prontuario', compact('prontuarios'));
     }
 
     /**
@@ -35,29 +28,11 @@ class ProntuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        if(Prontuario::create($request->all())){
+            return redirect('prontuario')->with('success', 'Registro de Prontuário adicionado!');
+        }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Prontuario  $prontuario
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Prontuario $prontuario)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Prontuario  $prontuario
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Prontuario $prontuario)
-    {
-        //
+        return redirect('prontuario')->with('error', 'Ocorreu um erro!');
     }
 
     /**
@@ -67,9 +42,14 @@ class ProntuarioController extends Controller
      * @param  \App\Models\Prontuario  $prontuario
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Prontuario $prontuario)
+    public function update(Request $request, $id)
     {
-        //
+        $prontuario = Prontuario::find($id);
+        if($prontuario->update($request->all())){
+            return redirect('prontuario')->with('success', 'Registro de prontuário atualizado!');
+        }
+
+        return redirect('prontuario')->with('error', 'Ocorreu um erro!');
     }
 
     /**
@@ -78,8 +58,13 @@ class ProntuarioController extends Controller
      * @param  \App\Models\Prontuario  $prontuario
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Prontuario $prontuario)
+    public function destroy($id)
     {
-        //
+        $prontuario = Prontuario::find($id);
+        if($prontuario->delete()){
+            return redirect('prontuario')->with('success', 'Registro de prontuário deletado!');
+        }
+
+        return redirect('prontuario')->with('error', 'Ocorreu um erro!');
     }
 }
