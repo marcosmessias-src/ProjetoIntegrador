@@ -1,29 +1,12 @@
 <!DOCTYPE html>
-<!--
-Author: Keenthemes
-Product Name: Metronic - Bootstrap 5 HTML, VueJS, React, Angular, Asp.Net Core, Blazor, Django, Flask & Laravel Admin Dashboard Theme
-Purchase: https://1.envato.market/EA4JP
-Website: http://www.keenthemes.com
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Dribbble: www.dribbble.com/keenthemes
-Like: www.facebook.com/keenthemes
-License: For each use you must have a valid license purchased only from above link in order to legally use the theme for your project.
--->
-<html lang="en">
+<html lang="pt-br" data-theme="dark">
 	<!--begin::Head-->
 	<head>
 		<title>Assistência Social - IFAL</title>
-		<meta charset="utf-8" />
-		<meta name="description" content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 100,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue, Asp.Net Core, Blazor, Django, Flask &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
-		<meta name="keywords" content="Metronic, Bootstrap, Bootstrap 5, Angular, VueJs, React, Asp.Net Core, Blazor, Django, Flask &amp; Laravel, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta property="og:locale" content="en_US" />
+		<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta property="og:locale" content="pt_BR" />
 		<meta property="og:type" content="article" />
-		<meta property="og:title" content="Metronic - Bootstrap 5 HTML, VueJS, React, Angular, Asp.Net Core, Blazor, Django, Flask &amp; Laravel Admin Dashboard Theme" />
-		<meta property="og:url" content="https://keenthemes.com/metronic" />
-		<meta property="og:site_name" content="Keenthemes | Metronic" />
-		<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
+		<meta property="og:title" content="Assistência Social | IFAL" />
 		<link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
 		<!--begin::Fonts-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
@@ -36,21 +19,10 @@ License: For each use you must have a valid license purchased only from above li
 		<link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
 		<!--end::Global Stylesheets Bundle-->
         <meta name="csrf-token" content="{{ csrf_token() }}">
-		<!--Begin::Google Tag Manager -->
-		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-5FS8GGP');</script>
-		<!--End::Google Tag Manager -->
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
 	<body data-kt-name="metronic" id="kt_body" class="header-fixed header-tablet-and-mobile-fixed aside-fixed aside-secondary-disabled">
-		<!--begin::Theme mode setup on page load-->
-		<script>//if ( document.documentElement ) { const defaultThemeMode = "system"; const name = document.body.getAttribute("data-kt-name"); let themeMode = localStorage.getItem("kt_" + ( name !== null ? name + "_" : "" ) + "theme_mode_value"); if ( themeMode === null ) { if ( defaultThemeMode === "system" ) { themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } else { themeMode = defaultThemeMode; } } document.documentElement.setAttribute("data-theme", themeMode); }</script>
-		<!--end::Theme mode setup on page load-->
-		<!--Begin::Google Tag Manager (noscript) -->
-		<noscript>
-			<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FS8GGP" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-		</noscript>
-		<!--End::Google Tag Manager (noscript) -->
 		<!--begin::Main-->
 		<!--begin::Root-->
 		<div class="d-flex flex-column flex-root">
@@ -60,10 +32,47 @@ License: For each use you must have a valid license purchased only from above li
 				<!--begin::Wrapper-->
 				<div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
                     @include('components.header')
+
+                    <div aria-live="polite" aria-atomic="true" class="position-relative">
+                        @if(session('success'))
+                            <div class="toast-container position-absolute top-0 end-0 p-3">
+                                <div class="toast show bg-opacity-50 bg-success" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
+                                    <div class="toast-header bg-opacity-50 bg-light-success text-white">
+                                        <span class="svg-icon svg-icon-2 svg-icon-white me-3"><i class="bi bi-check-square icon-white"></i></span>
+                                        <strong class="me-auto fs-7">Notificação</strong>
+                                        <small>agora</small>
+                                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                                    </div>
+                                    <div class="toast-body">
+                                        {{session('success')}}
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
+                        @if(session('error'))
+                            <div class="toast-container position-absolute top-0 end-0 p-3">
+                                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
+                                    <div class="toast-header">
+                                        <span class="svg-icon svg-icon-2 svg-icon-primary me-3"><i class="bi bi-check-square"></i></span>
+                                        <strong class="me-auto">Sistema</strong>
+                                        <small>agora</small>
+                                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                                    </div>
+                                    <div class="toast-body">
+                                        {{session('error')}}
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+
 					<!--begin::Content-->
 					<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
 						<!--begin::Container-->
 						<div class="container-xxl" id="kt_content_container">
+                            <!-- Validation Errors -->
+                            <x-auth-validation-errors class="mb-4 alert" :errors="$errors" />
                             @yield('content')
 						</div>
 						<!--end::Container-->
@@ -79,19 +88,6 @@ License: For each use you must have a valid license purchased only from above li
 								<a href="https://www.linkedin.com/in/marcosmessias-src/" target="_blank" class="text-muted text-hover-primary fw-semibold me-2 fs-6">Marcos Messias</a>
 							</div>
 							<!--end::Copyright-->
-							<!--begin::Menu-->
-							<ul class="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
-								<li class="menu-item">
-									<a href="https://keenthemes.com" target="_blank" class="menu-link px-2">About</a>
-								</li>
-								<li class="menu-item">
-									<a href="https://devs.keenthemes.com" target="_blank" class="menu-link px-2">Support</a>
-								</li>
-								<li class="menu-item">
-									<a href="https://1.envato.market/EA4JP" target="_blank" class="menu-link px-2">Purchase</a>
-								</li>
-							</ul>
-							<!--end::Menu-->
 						</div>
 						<!--end::Container-->
 					</div>
@@ -116,7 +112,13 @@ License: For each use you must have a valid license purchased only from above li
 		</div>
 		<!--end::Scrolltop-->
 		<!--begin::Modals-->
-
+        @include('components.modal-ata')
+        @include('components.modal-edit-ata')
+        @include('components.modal-aluno')
+        @include('components.modal-edit-aluno')
+        @include('components.modal-prontuario')
+        @include('components.modal-edit-prontuario')
+        @include('components.modal-usuario')
 		<!--end::Modals-->
 
 		<!--begin::Javascript-->
@@ -132,6 +134,35 @@ License: For each use you must have a valid license purchased only from above li
 		<script src="assets/js/widgets.bundle.js"></script>
 		<script src="assets/js/custom/widgets.js"></script>
 		<script src="assets/js/custom/intro.js"></script>
+
+        @yield('scripts')
+
+        <script>
+            const alunosSelect = document.getElementById("student_select");
+
+            fetch('{{route('alunos.all')}}')
+                .then((student) => student.json())
+                .then((data) => {
+                    var count = Object.keys(data).length;
+                    var option = '';
+
+                    for(i=0;i<count;i++){
+                        option += '<option class="text-success text-hover-success" value="'+data[i].id+'">'+data[i].name+' | '+data[i].cpf+'</option>';
+                    }
+
+                    alunosSelect.innerHTML += option;
+                });
+
+                function findAluno(){
+                    var id = document.getElementById('student_select').value
+                    fetch('{{route('alunos.find', 0)}}'+id)
+                        .then((student) => student.json())
+                        .then((data) => {
+                            document.getElementById('student_name').value = data;
+                        });
+                }
+
+        </script>
 		<!--end::Custom Javascript-->
 		<!--end::Javascript-->
 	</body>
